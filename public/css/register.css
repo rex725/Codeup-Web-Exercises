@@ -1,0 +1,15 @@
+input {
+	width:100%;
+	padding:6px 10px;
+	margin:5px 0;
+}
+
+input[type=checkbox] {
+	width:2.5%;
+}
+
+button {
+	color:#FFF;
+	font-size:1em;
+	background-color:#499849;
+}

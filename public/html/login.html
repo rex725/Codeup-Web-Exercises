@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset='utf8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+	<link rel='stylesheet' href='/css/bootstrap.css'>
+	<link rel='stylesheet' href='/css/login.css'>
+</head>
+<body>
+	<h1>Log In</h1>
+	<main class='container'>
+	<form method='POST' action='https://requestb.in/1l9iv7o1' class='form-horizontal'>
+		<section>
+			<div class='form-group'>
+				<div>
+				<label for='eamil' class='col-md-2'>Email</label>
+				<input type='email' id='email' name='email' autofocus required class='form-control'>
+			</div>
+			</div>
+			<div class='form-group'>
+				<div>
+					<label for='password' class='col-md-2'>Password</label>
+					<input type='password' id='password' name='password' required class='form-control'>
+				</div>
+			</div>
+		</section>
+		<div class='row'>
+			<div class='col-md-offset-4 col-md-4'>
+				<input type='checkbox' id='remember_me' name='remember_me' value'yes'>
+				<label for='remember_me' id='checkbox_remember'>Remember me for 2 weeks?</label>
+			</div>
+		</div>
+		<div id='submit' class='row'>
+			<button type='submit' class='btn btn-success btn-lg col-md-2 col-md-offset-5'>Log In</button>
+		</div>
+	</form>
+	</main>
+</body>
+</html>

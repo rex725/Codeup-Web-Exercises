@@ -1,0 +1,12 @@
+body {
+	padding-top: 50px;
+}
+
+.row {
+	padding: 10px 0;
+	border: 1px solid #000;
+}
+
+#indent {
+	text-indent: 40px;
+}

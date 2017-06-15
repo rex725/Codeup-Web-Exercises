@@ -79,10 +79,27 @@ console.log(luckyNumber);
 		break;
 	}
 
-var number = confirm('Would you like to enter a number?')
+var confirmNumber = confirm('Would you like to enter a number?');
 	
-	if (number) {
-		var newNumber = prompt('Please enter a number.')
-			if (newNumber==)
+	if (confirmNumber) {
+		
+			var number = prompt('Please enter a number.');
+				if (number%2===0) {
+					console.log('Your number was even.');
+				} else if (isNaN) {
+					alert("I'm sorry, that is not a number. Please try again.") 
+				} else {
+					console.log('Your number was odd.');
+				}
+	
+				if (number<=0) {
+					console.log('Your number is negative.');
+				} else {
+					console.log('Your number is a positive number.');
+				}
+			var numberPlusOneHundred = parseInt(number)+100;
+				console.log(numberPlusOneHundred);
 	}
+
+
 

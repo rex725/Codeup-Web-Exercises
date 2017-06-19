@@ -1,19 +1,35 @@
 (function temperatureConversion (farenheit, celsius) {
 	// var temperature = prompt('What temperature would you like to convert?');
 	// var
+	var temperatures = []
 	var farenheitToCelsius = confirm('Would you like to convert farenheit to celsius?');
 		if (farenheitToCelsius) {
-			var farenheit = prompt('What is the temperature in farenheit?');
-			console.log(farenheit.split(','));
-			return alert('The temperature in Farenheit was ' + farenheit +' and the temperature in celsius is ' + (farenheit-32)*.5556 + '.');
-		} else {
+				while (farenheitToCelsius) {
+					var intializeConversion = confirm('Would you like to add some temperatures?');
+						if (intializeConversion) {
+							var farenheit = prompt('What is the temperature in farenheit?');
+							temperatures.push(farenheit);
+						} else {
+							break;
+						}
+				}
+		} 
+		else {
 			var celsiusToFarenheit = confirm('Would you like to convert celsius to farenheit?');
 				if (celsiusToFarenheit) {
-					var celsius = prompt('What is the temperature in celsius?');
-					return alert('The temperature in Celsius was ' + celsius +' and the temperature in farenheit is ' + (((celsius*9)/5)+32) + '.');
-				} else {
-					return;
+				while (celsiusToFarenheit) {
+					var intializeConversion = confirm('Would you like to add some temperatures?');
+						if (intializeConversion) {
+							var celsius = prompt('What is the temperature in farenheit?');
+							temperatures.push(celsius);
+						} else {
+							break;
+						}
 				}
 			
 		}
+	console.log(temperatures);
+	temperatures.forEach(function (element, index, array) {;
+		return alert('The temperature in Farenheit was ' + element +' and the temperature in celsius is ' + (element-32)*.5556 + '.');
+	});
 })();

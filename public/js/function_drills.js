@@ -112,5 +112,3 @@ function doMath(operator, a, b) {
 	return operator(a, b);
 
 }
-
-console.log(doMath(remainder, 7, 5));

@@ -173,7 +173,7 @@
 //         - changes the dateAvailble property to the string “now”
 // })();
 
-(function() {
+// (function() {
     //   The dog object should have properties for:
     //     breed (string),
     //     weightInPounds (number),
@@ -187,9 +187,7 @@
         age: 5,
         color: 'golden',
         sterilized: false,
-        shotRecords: [
-            {date: '06/09/2016' ,typeOfShot: 'Rabies'}
-        ],
+        shotRecords: [],
         bark: function() {
             console.log('Woof!');
         },
@@ -202,7 +200,7 @@
         getShot: function () {
             var shotName = prompt('What shot was the dog given?');
             var shotDate = prompt('What date was the shot given on?');
-            var newShotRecord = {date: shotName, typeOfShot: shotDate};
+            var newShotRecord = {date: shotDate, typeOfShot: shotName};
             dog.shotRecords.push(newShotRecord);
         }
 
@@ -215,4 +213,4 @@
     //     fix() - will set sterile to true
     //     getShot() - takes in an argument for the name of the shot and adds a new shot with the current date to the shotRecords array
 
-})();
+// })();

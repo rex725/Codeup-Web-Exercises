@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stop Watch</title>
+</head>
+<body>
+<!-- Define an object called stopWatch.
+
+Include the following properties...
+
+    intervalId
+    count
+
+Include the following methods...
+
+    start() - starts console logging an increasing count every second
+    pause() - pauses counter
+    reset() - stops counter and resets count to zero -->
+	<script>
+	var stopwatch = {
+		intervalId: null,
+		count: 1,
+		start: (function() {
+			var interval = 1000;
+			this.intervalId = setInterval(function () {
+				console.log(stopwatch.count++);
+				// return stopwatch.count;
+			}, interval)
+		}),
+		pause: (function (){
+			clearInterval(this.intervalId);
+		}),
+		reset: (function (){
+			clearInterval(this.intervalId);
+			this.count = 1;
+			stopwatch.start();
+		})
+	};
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jack in the Box</title>
+</head>
+<body>
+<!-- Define an object called jackBox. -->
+
+<!-- Include properties for...
+    songPlayed - the song played when using it
+     triggered - whether or not the box has been sprung (should be false by default)
+    intervalId - set to null
+
+Include methods for...
+    play() - once called, if triggered is false, console.log the following lyrics every second...
+
+        "All a-..."
+        "-round the ..."
+        "mulberry ..."
+        "bush, The ..."
+        "monkey ..."
+        "chased the ..."
+        "wea-..."
+        "-sel...."
+        "The monkey ..."
+        "stopped to ..."
+        "pull up his ..."
+        "sock, ..."
+        "Pop! ..."
+        "goes the ..."
+        "wea-..."
+        "-sel."
+
+    ...stop the interval, set the triggered property to true, and alert POP!
+
+    reset() - once called will stope the play() method and set triggered to false -->
+    <script>
+    	var jackBox = {
+    		songPlayed: [
+    			'All a-...',
+    			'-round the...',
+    			'mulberry...',
+    			'bush, The ...',
+        		'monkey ...',
+        		'chased the ...',
+        		'wea-...',
+        		'-sel....',
+        		'The monkey ...',
+        		'stopped to ...',
+        		'pull up his ...',
+        		'sock, ...',
+        		'Pop! ...',
+        		'goes the ...',
+        		'wea-...',
+        		'-sel.',
+			],
+    		triggered: false,
+    		intervalId: null,
+    		play: (function () {
+    			if (this.triggered == false) {
+    				var interval = 1000;
+    				var intervalId = setInterval(function (){
+    					for (var i = 0; i < jackBox.songPlayed.length; i++)
+    					console.log(this.songPlayed[i]);
+    				}, interval);
+    			}
+    		}),
+    	}
+    </script>
+</body>
+</html>

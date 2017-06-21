@@ -58,13 +58,26 @@ Include methods for...
     		intervalId: null,
     		play: (function () {
     			if (this.triggered == false) {
-    				var interval = 1000;
-    				var intervalId = setInterval(function (){
-    					for (var i = 0; i < jackBox.songPlayed.length; i++)
-    					console.log(this.songPlayed[i]);
-    				}, interval);
+    				delay = 1000;
+    				var i = 0;
+    				jackBox.intervalId = setInterval(function (){
+    					console.log(jackBox.songPlayed[i]);
+    					i++;
+    					if (i == jackBox.songPlayed.length) {
+    						clearInterval(jackBox.intervalId);
+    						jackBox.triggered = true;
+    						alert('POP!');
+    					};
+    				}, delay);
+    				
     			}
+
     		}),
+    		reset: (function (){
+    			clearInterval(jackBox.intervalId);
+    			this.triggered = false;
+    			this.play();
+    		})
     	}
     </script>
 </body>

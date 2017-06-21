@@ -24,25 +24,42 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<button class='change_buttons' id='main_header_button'>Set Main Header to "JavaScript is Cool</button>
+<button class='change_buttons' id='sub_header_button'>Change the Sub-Header</button>
+<button class='change_buttons' id='list_items_button'>Change List Items</button>
+<button class='change_buttons' id='sub_paragraph_button'>Change Sub-Paragraph</button>
 
+<!-- Open the HTML file named dom_query_js.html that you created in the last lesson.
+Add 4 buttons to the page. Attach click event listeners to each of the buttons and have the handlers perform the modifications that were automatically taking place. For example, the first button should set inner html of mainHeader to "JavaScript is Cool".
+View the results in your browser to test for the expected output.
+Finally, save your work, commit the changes to your git repository, and push to GitHub.
+ -->
 <script>
     (function() {
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
         var mainHeader = document.getElementById('main-header') ;
+        var changeHeader = document.getElementById('main_header_button');
+        changeHeader.addEventListener('click', function() {
+            mainHeader.innerHTML ='JavaScript is Cool';
+        });
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML ='JavaScript is Cool';
+        
         // TODO: Uncomment the next line and get the sub header element by id
         var subHeader = document.getElementById('sub-header');
+        var changeSubHeader = document.getElementById('sub_header_button');
+        changeSubHeader.addEventListener('click', function() {
+            subHeader.style.color = 'blue'
+        });
 
         // TODO: Set the text color of subHeader to blue
-        subHeader.style.color = 'blue'
+        
         // TODO: Uncomment the next line and get all list items
         var listItems = document.getElementsByTagName('li');
-                // TODO: Set text color on every other list item to grey
-        // TODO: Set text color of li with dbid = 1 to blue
-        for (var i = 0; i < listItems.length; i++) {
+        var changeListItems = document.getElementById('list_items_button');
+        changeListItems.addEventListener('click', function () {
+            for (var i = 0; i < listItems.length; i++) {
             // console.log(listItems[i]);
             var dataDbidValue = listItems[i].getAttribute('data-dbid');
 
@@ -52,13 +69,19 @@
                 listItems[i].style.color = '#808080';
             }
         };
+        });
+        // TODO: Set text color on every other list item to grey
+        // TODO: Set text color of li with dbid = 1 to blue
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
         var subParagraphs = document.getElementsByClassName('sub-paragraph');
-        console.log(subParagraphs);
+        var changeSubParagraphs = document.getElementById('sub_paragraph_button');
+        changeSubParagraphs.addEventListener('click', function () {
+            subParagraphs[0].innerText = 'Mission Accomplished!';
+        });
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-        subParagraphs[0].innerText = 'Mission Accomplished!';
+        
     })();
 </script>
 </body>

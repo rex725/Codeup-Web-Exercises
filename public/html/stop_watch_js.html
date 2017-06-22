@@ -24,7 +24,6 @@ Include the following methods...
 			var interval = 1000;
 			this.intervalId = setInterval(function () {
 				console.log(stopwatch.count++);
-				// return stopwatch.count;
 			}, interval)
 		}),
 		pause: (function (){
@@ -33,7 +32,6 @@ Include the following methods...
 		reset: (function (){
 			clearInterval(this.intervalId);
 			this.count = 1;
-			stopwatch.start();
 		})
 	};
 	</script>

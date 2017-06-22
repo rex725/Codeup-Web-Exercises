@@ -10,42 +10,44 @@
 <body>
 	<div class='container'>
 		<header class='row'>
-			<input type=text>
-			<input type=text>
-			<input type=text>
+			<input type=text id='number_values_1'>
+			<input type=text id='operator_input'>
+			<input type=text id='number_values_2'>
 		</header>
 		<main>
 			<div class='row'>
-				<button class='calculator_button' id='AC'>AC</button>
-				<button class='calculator_button' id='+/-'>+/-</button>
-				<button class='calculator_button' id='%'>%</button>
-				<button class='calculator_button' id='/'>&#247;</button>
+				<button class='clear' id='AC'>AC</button>
+				<button class='modifiers' id='+/-'>+/-</button>
+				<button class='operators' id='%'>%</button>
+				<button class='operators' id='/'>&#247;</button>
 			</div>
 			<div class='row'>
-				<button class='calculator_button' id='7'>7</button>
-				<button class='calculator_button' id='8'>8</button>
-				<button class='calculator_button' id='9'>9</button>
-				<button class='calculator_button' id='*'>x</button>
+				<button class='numbers' id='7'>7</button>
+				<button class='numbers' id='8'>8</button>
+				<button class='numbers' id='9'>9</button>
+				<button class='operators' id='*'>x</button>
 			</div>
 			<div class='row'>
-				<button class='calculator_button' id='4'>4</button>
-				<button class='calculator_button' id='5'>5</button>
-				<button class='calculator_button' id='6'>6</button>
-				<button class='calculator_button' id='-'>-</button>
+				<button class='numbers' id='4'>4</button>
+				<button class='numbers' id='5'>5</button>
+				<button class='numbers' id='6'>6</button>
+				<button class='operators' id='-'>-</button>
 			</div>
 			<div class='row'>
-				<button class='calculator_button' id='1'>1</button>
-				<button class='calculator_button' id='2'>2</button>
-				<button class='calculator_button' id='3'>3</button>
-				<button class='calculator_button' id='+'>+</button>
+				<button class='numbers' id='1'>1</button>
+				<button class='numbers' id='2'>2</button>
+				<button class='numbers' id='3'>3</button>
+				<button class='operators' id='+'>+</button>
 			</div>
 			<div class='row'>
-				<button class='calculator_button' id='0'>0</button>
-				<button class='calculator_button' id='.'>.</button>
-				<button class='calculator_button' id='='>=</button>
+				<button class='numbers' id='0'>0</button>
+				<button class='modifiers' id='.'>.</button>
+				<button id='run_operation' id='='>=</button>
 			</div>
 		</main>
 		<footer>
 		</footer>
+		<script src='/js/calculator.js'>
+		</script>
 </body>
 </html>

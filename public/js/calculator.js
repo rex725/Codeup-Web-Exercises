@@ -1,5 +1,4 @@
 (function() {
-// Number Inputs
 	var numberInput1 = document.getElementById('number_values_1');
 	var inputNumbers = document.getElementsByClassName('numbers');
 	var operatorInput = document.getElementById('operator_input');
@@ -7,6 +6,7 @@
 	var numberInput2 = document.getElementById('number_values_2');
 	var decimal = document.getElementById('.');
 	var inverseOperation = document.getElementById('+/-');
+// Number Inputs
 		inputNumbers[0].addEventListener('click', function() {
 			if (operatorInput.value == '') {
 				numberInput1.value += 7;
@@ -78,7 +78,7 @@
 			}
 		});
 		
-//Operator
+//Operators
 		decimal.addEventListener('click', function() {
 			if(operatorInput.value == '') {
 				numberInput1.value +='.';

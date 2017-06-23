@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding Challenge</title>
+</head>
+<body>
+	<input type='text' id='first_number'>
+	<input type='text' id='second_number'>
+	<button id='multiply'>Multiply</button>
+	<button id='divide'>Divide</button>
+	<input type='text' id='result'>
+	<script>
+		var numberInput1 = document.getElementById('first_number');
+		var numberInput2 = document.getElementById('second_number');
+		var result = document.getElementById('result');
+		var multiply = document.getElementById('multiply');
+		var division = document.getElementById('divide');
+			multiply.addEventListener('click', function(){
+				result.value = parseFloat(numberInput1.value)*parseFloat(numberInput2.value);
+			});
+			divide.addEventListener('click', function() {
+				result.value = parseFloat(numberInput1.value)/parseFloat(numberInput2.value);
+			});
+		var lowestAndLargest = [75,89,35,-3,0,-23,90,-90]
+		var smallest = lowestAndLargest[0]
+		var largest = lowestAndLargest[0]
+		for (var i = 0; i<lowestAndLargest.length; i++)
+			if (lowestAndLargest[i]>largest) {
+				largest = lowestAndLargest[i];
+			} else if (lowestAndLargest[i]<smallest) {
+				smallest = lowestAndLargest[i];
+			}
+			console.log(largest);
+			console.log(smallest);
+		var lowestAndLargest2 = [2,10]
+		var smallest = lowestAndLargest2[0]
+		var largest = lowestAndLargest2[0]
+		for (var i = 0; i<lowestAndLargest2.length; i++)
+			if (lowestAndLargest2[i]>largest) {
+				largest = lowestAndLargest2[i];
+			} else if (lowestAndLargest2[i]<smallest) {
+				smallest = lowestAndLargest2[i];
+			}
+			console.log(largest);
+			console.log(smallest);
+		var longestWord = ('florida is sunnier than texas');
+		var longestWordArray = longestWord.split(' ');
+		var largestword = longestWordArray[0]
+			for (var i = 0; i<longestWordArray.length; i++)
+				if (longestWordArray[i]>largestword) {
+					largestword = longestWordArray[i];
+					// break;
+				}
+			console.log(largestword);
+		var firstArray = [4,67,98,2]
+		var secondArray = [5,12,2,100,56]
+		var combinedArray = firstArray.concat(secondArray);
+		console.log(combinedArray)
+			for (var i = 0;i<combinedArray.length; i++) {
+				if (combinedArray[i] == 2){
+					delete combinedArray[i];
+				}
+			}
+
+
+	</script>
+</body>
+</html>

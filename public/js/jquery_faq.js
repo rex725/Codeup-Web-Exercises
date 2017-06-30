@@ -16,4 +16,14 @@ $('document').ready(function() {
 	$('li').click(function() {
 		$(this).parent('ul').children().first().css('color', 'blue');
 	});
+	$('#close-out-newsletter').click(function() {
+		$('.header').hide();
+	});
+	$('h3').click(function() {
+		$(this).next().slideDown(250);
+	});
+	$('.alert').hide().delay(8000).fadeIn();
+	// $('.close').click(function() {
+	// 	$('.alert').hide();
+
 });

@@ -44,7 +44,11 @@
         });
 
         // TODO: "Scale It" should expand the box width by 50%
-
+        $('#btn-scale').click(function(){
+            $('#animate-box').animate({
+                width: '+=50%'
+            });
+        });
         // TODO: "Hide It" should use opacity to make the box invisible
 
         // TODO: "Show It" should make the box appear

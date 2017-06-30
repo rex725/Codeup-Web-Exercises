@@ -56,7 +56,11 @@
             });
         });
         // TODO: "Show It" should make the box appear
-
+        $('#btn-show').click(function() {
+            $('#animate-box').animate({
+                opacity: '1'
+            });
+        });
         // TODO: "Animate All" should use an animation stack to:
         //      1) Move and scale the box simultaneously
         //      2) Hide the box

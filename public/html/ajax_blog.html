@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Blog</title>
+	<link rel='stylesheet' href='/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='/css/ajax_blog.css'>
+</head>
+<body class='container'>
+	<div id='posts' class='row'></div>
+	<div class='row'>
+		<button id='refresh-posts' class='col-sm-2 col-sm-offset-5 btn btn-primary btn-lg'>Refresh</button>
+	</div>
+	<script src='/js/jquery-3.2.1.js'></script>
+	<script>
+		"use strict";
+		(function() {
+			function getRequestFunction () {
+				var getRequest = $.get('/data/blog.json');
+				getRequest.done(function(data, status) {
+					var blogs = '';
+					data.forEach(function(element, index, array) {
+						blogs += ('<h2>' + data[index].title + '</h2><br><h3>' + data[index].categories + '		</h3><br><p>' + data[index].content + '</p>')
+					console.log('firing');
+					});
+					$('#posts').html(blogs);
+				});
+				getRequest.fail(function(jqXhr, status, error) {
+					alert('Status: ' + status + ' Error: ' + error);
+				});
+			};
+			getRequestFunction();
+			$('#refresh-posts').click(function () {
+				getRequestFunction();
+				// getRequest.fail(function(jqXhr, status, error) {
+				// 	alert('Status: ' + status + ' Error: ' + error);
+				// });
+			});
+		})();
+	</script>
+
+</body>
+</html>

@@ -27,9 +27,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <script>
+"use strict";
 (function() {
-    $('#refresh').click(function() {
-        "use strict";
+    $('#refresh').click(function() {       
         // TODO: Create an ajax GET request for /data/inventory.json
         var getRequest = $.get('/data/inventory.json');
         getRequest.done(function (data, status) {
@@ -38,8 +38,10 @@
                 toolsTableInput += ('<tr><td>' + data[index].title + '</td><td>' + data[index].quantity + ' </td><td>' + data[index].price + '</td><td>' + data[index].categories + '</td></tr>');
                 console.log(toolsTableInput);           
             });
-            $('#insertProducts').html(toolsTableInput);
-            
+            $('#insertProducts').html(toolsTableInput);           
+        });
+        getRequest.fail(function(jqXhr, status, error) {
+            alert('Status: ' + status + ' Error: ' + error);
         });
     
         // TODO: Take the data from inventory.json and append it to the products table

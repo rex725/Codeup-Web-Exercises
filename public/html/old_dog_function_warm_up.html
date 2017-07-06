@@ -51,8 +51,6 @@
      	function makeRequest() {
      		var request = $.get('/data/old_dog.json')
 
-     		
-     		
      		request.done(function(data, status, request) {
      			console.log(isOldDog(data));
      		});

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+<table id="products">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+
+<button id="deathstar">Click here to add the deathstar to your inventory of tools</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+(function() {
+    "use strict";
+
+    // read from /data/inventory.json 
+        // make an AJAX Get request to /data/inventory.json
+        // var url = "/data/inventory.json";
+    var url = "/data/inventory.json";
+    var request = makeRequestURL (url);
+    function makeRequestURL(url) {
+        var request = $.get(url);
+        return request;
+    };
+
+    request.done (function(data, status, request) {
+        data.forEach(function(tool) {
+            function addTools (htmlString) {
+                htmlString += "<td>" + tool.title + "</td>";
+                htmlString += "<td>" + tool.quantity + "</td>";
+                htmlString += "<td>" + "$" + tool.price + ".99" + "</td>";
+                htmlString += "<td>" + tool.categories + "</td>";
+                return htmlString;
+            };
+        });  
+        var htmlString = '<tr>';
+        htmlString += addTools();        
+        htmlString += '</tr><tr>';
+        htmlString += addDeathStar();
+        htmlString += '</tr>';
+    });
+
+    request.fail(function(request, status, error) {
+            console.log(status);
+            console.log(error);
+    }); 
+
+
+    function addAJAXDeathStarToPage() {
+        var url = "http://swapi.co/api/starships/9/";
+
+        var request = makeRequestURL (url);
+
+        request.done(function(data, status, request) {
+            console.log(data);
+            console.log(status);
+
+            
+            function addDeathStar (htmlString) {
+                var htmlString = "";
+                htmlString += "<td>" + data.name + "</td>";
+                
+                htmlString += "<td>1</td>";
+                htmlString += "<td>" + data.cost_in_credits + "</td>";
+                htmlString += "<td>" + data.starship_class + "</td>";
+                return htmlString;
+            };      
+
+            // $("#insertProducts").append(htmlString);
+
+
+        });
+
+         
+    }
+    
+    $("#deathstar").click(function() {
+        addAJAXDeathStarToPage();
+    });
+
+    // var url = "/data/inventory.json";
+
+    // make AJAX get request
+    // var request = makeRequestURL (url);
+
+    // define the done
+    request.done(function(data, status, request) {
+        
+        var htmlString = "";
+
+        data.forEach(function(tool) {
+            htmlString += "<tr>";
+            function addTools (htmlString) {
+                htmlString += "<td>" + tool.title + "</td>";
+                htmlString += "<td>" + tool.quantity + "</td>";
+                htmlString += "<td>" + "$" + tool.price + ".99" + "</td>";
+                htmlString += "<td>" + tool.categories + "</td>";
+                return htmlString;
+            };
+            htmlString += addTools();
+            htmlString += "</tr>";
+        });      
+
+        $("#insertProducts").html(htmlString);
+    });
+    // define the fail
+    request.fail(function(request, status, error) {
+        console.log(status);
+        console.log(error);
+    });  
+
+})();
+</script>
+
+</body>
+</html>

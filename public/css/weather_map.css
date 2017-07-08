@@ -6,6 +6,10 @@ h1 {
 	color: #FFF;
 }
 
+h3 {
+	color: #FFF;
+}
+
 #lat_and_lon {
 	margin-bottom: 30px;
 }
@@ -26,6 +30,8 @@ ul {
 	background-color: #f0f5d8;
 }
 
-li  {
-
+#map-canvas {
+	height: 50vh;
+    width: 100%;
+    border-radius: 25px;
 }

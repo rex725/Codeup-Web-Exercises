@@ -1,5 +1,5 @@
 'use strict';
-// $(document).ready(function() {
+$(document).ready(function() {
 	var myLatLng = {lat: 29.4241, lng: -98.4936};
 
 	var map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -71,4 +71,4 @@
 			console.log('Status: ' + status + ' Error: ' + error);
 		});
 	}));
-// });
+});

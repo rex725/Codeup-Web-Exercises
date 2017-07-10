@@ -25,21 +25,23 @@
 		console.log(data);
 		$('#city').html(data.city.name)
 		var forecast = '';
-		data.list.forEach(function (element, index, array) {
-			forecast += '<ul><li>';
-			forecast += '<h3 class="temps">' + element.temp.min + '/' + element.temp.max + '</h3>';
-			forecast += '</li><li>';
-			forecast += '<img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png">';
-			forecast += '</li><li>';
-			forecast += '<strong>' + element.weather[0].main + ':</strong> ' + element.weather[0].description;
-			forecast += '</li><li>';
-			forecast += '<strong>Humidity:</strong> ' + element.humidity;
-			forecast += '</li><li>';
-			forecast += '<strong>Wind:</strong> ' + element.speed;
-			forecast += '</li><li>';
-			forecast += '<strong>Pressure:</strong> ' + element.pressure;
-			forecast += '</li></ul>';
-		});
+		(function weatherForecasts() {
+			data.list.forEach(function (element, index, array) {
+				forecast += '<ul><li>';
+				forecast += '<h3 class="temps">' + element.temp.min + '/' + element.temp.max + '</h3>';
+				forecast += '</li><li>';
+				forecast += '<img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png">';
+				forecast += '</li><li>';
+				forecast += '<strong>' + element.weather[0].main + ':</strong> ' + element.weather[0].description;
+				forecast += '</li><li>';
+				forecast += '<strong>Humidity:</strong> ' + element.humidity;
+				forecast += '</li><li>';
+				forecast += '<strong>Wind:</strong> ' + element.speed;
+				forecast += '</li><li>';
+				forecast += '<strong>Pressure:</strong> ' + element.pressure;
+				forecast += '</li></ul>';
+			});
+		})();
 		
 		$('#weather_forecast').html(forecast);
 	});
@@ -61,21 +63,7 @@
 			console.log(data);
 			$('#city').html(data.city.name)
 			var forecast = '';
-			data.list.forEach(function (element, index, array) {
-				forecast += '<ul><li>';
-				forecast += '<h3 class="temps">' + element.temp.min + '/' + element.temp.max + '</h3>';
-				forecast += '</li><li>';
-				forecast += '<img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png">';
-				forecast += '</li><li>';
-				forecast += '<strong>' + element.weather[0].main + ':</strong> ' + element.weather[0].description;
-				forecast += '</li><li>';
-				forecast += '<strong>Humidity:</strong> ' + element.humidity;
-				forecast += '</li><li>';
-				forecast += '<strong>Wind:</strong> ' + element.speed;
-				forecast += '</li><li>';
-				forecast += '<strong>Pressure:</strong> ' + element.pressure;
-				forecast += '</li></ul>';
-			});
+			weatherForecasts();
 			
 			$('#weather_forecast').html(forecast);
 		});

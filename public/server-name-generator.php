@@ -5,8 +5,8 @@ $nouns = ["man" , "mountain" , "state" , "ocean" , "country" , "building" , "cat
 
 function combiningRandomNounsandAdjectives ($adjectives, $nouns)
 {
-	$nounRandomNumber = rand(0, 9);
-	$adjectiveRandomNumber = rand(0, 9);
+	$nounRandomNumber = rand(0, count($nouns) - 1);
+	$adjectiveRandomNumber = rand(0, count($adjectives) - 1);
 	$randomNoun = $nouns[$nounRandomNumber];
 	$randomAdjective = $adjectives[$adjectiveRandomNumber];
 	return "{$randomAdjective} {$randomNoun}";

@@ -6,61 +6,72 @@
 <body>
 	<input type='text' id='first_number'>
 	<input type='text' id='second_number'>
-	<button id='multiply'>Multiply</button>
-	<button id='divide'>Divide</button>
+	<button id='add'>Add</button>
+	<button id='subtract'>Subtract</button>
 	<input type='text' id='result'>
 	<script>
 		var numberInput1 = document.getElementById('first_number');
 		var numberInput2 = document.getElementById('second_number');
 		var result = document.getElementById('result');
-		var multiply = document.getElementById('multiply');
-		var division = document.getElementById('divide');
-			multiply.addEventListener('click', function(){
-				result.value = parseFloat(numberInput1.value)*parseFloat(numberInput2.value);
+		var add = document.getElementById('add');
+		var divide = document.getElementById('subtract');
+			add.addEventListener('click', function(){
+				result.value = parseFloat(numberInput1.value)+parseFloat(numberInput2.value);
 			});
 			divide.addEventListener('click', function() {
-				result.value = parseFloat(numberInput1.value)/parseFloat(numberInput2.value);
+				result.value = parseFloat(numberInput1.value)-parseFloat(numberInput2.value);
 			});
-		var lowestAndLargest = [75,89,35,-3,0,-23,90,-90]
-		var smallest = lowestAndLargest[0]
-		var largest = lowestAndLargest[0]
-		for (var i = 0; i<lowestAndLargest.length; i++)
-			if (lowestAndLargest[i]>largest) {
-				largest = lowestAndLargest[i];
-			} else if (lowestAndLargest[i]<smallest) {
-				smallest = lowestAndLargest[i];
-			}
-			console.log(largest);
-			console.log(smallest);
-		var lowestAndLargest2 = [2,10]
-		var smallest = lowestAndLargest2[0]
-		var largest = lowestAndLargest2[0]
-		for (var i = 0; i<lowestAndLargest2.length; i++)
-			if (lowestAndLargest2[i]>largest) {
-				largest = lowestAndLargest2[i];
-			} else if (lowestAndLargest2[i]<smallest) {
-				smallest = lowestAndLargest2[i];
-			}
-			console.log(largest);
-			console.log(smallest);
-		var longestWord = ('florida is sunnier than texas');
-		var longestWordArray = longestWord.split(' ');
-		var largestword = longestWordArray[0]
-			for (var i = 0; i<longestWordArray.length; i++)
-				if (longestWordArray[i]>largestword) {
-					largestword = longestWordArray[i];
-					// break;
-				}
-			console.log(largestword);
-		var firstArray = [4,67,98,2]
-		var secondArray = [5,12,2,100,56]
-		var combinedArray = firstArray.concat(secondArray);
-		console.log(combinedArray)
-			for (var i = 0;i<combinedArray.length; i++) {
-				if (combinedArray[i] == 2){
-					delete combinedArray[i];
-				}
-			}
+		function twoHighest(array) {
+				array = array.sort();
+				console.log(array);
+				return array.splice(array.length - 2, 2);
+		};
+		console.log(twoHighest([0,-12,-34,-50,-1]));
+		function shortestWord(string) {
+			stringToAnArray = string.split(' ');
+			comparisonArray =stringToAnArray;
+			console.log(stringToAnArray);
+			console.log(comparisonArray);
+			stringToAnArray.forEach(function(element, index, array){
+				for (var i = 0; i < comparisonArray.length; i++) {
+					if (stringToAnArray[index].length >= stringToAnArray[i].length) {
+						largestWord = stringToAnArray[index];
+						console.log(largestWord);
+						return largestWord;
+					};
+				};
+			});
+		};
+		console.log(shortestWord('My phone battery is always dead.'));
+		// var lowestAndLargest2 = [2,10]
+		// var smallest = lowestAndLargest2[0]
+		// var largest = lowestAndLargest2[0]
+		// for (var i = 0; i<lowestAndLargest2.length; i++)
+		// 	if (lowestAndLargest2[i]>largest) {
+		// 		largest = lowestAndLargest2[i];
+		// 	} else if (lowestAndLargest2[i]<smallest) {
+		// 		smallest = lowestAndLargest2[i];
+		// 	}
+		// 	console.log(largest);
+		// 	console.log(smallest);
+		// var longestWord = ('florida is sunnier than texas');
+		// var longestWordArray = longestWord.split(' ');
+		// var largestword = longestWordArray[0]
+		// 	for (var i = 0; i<longestWordArray.length; i++)
+		// 		if (longestWordArray[i]>largestword) {
+		// 			largestword = longestWordArray[i];
+		// 			// break;
+		// 		}
+		// 	console.log(largestword);
+		// var firstArray = [4,67,98,2]
+		// var secondArray = [5,12,2,100,56]
+		// var combinedArray = firstArray.concat(secondArray);
+		// console.log(combinedArray)
+		// 	for (var i = 0;i<combinedArray.length; i++) {
+		// 		if (combinedArray[i] == 2){
+		// 			delete combinedArray[i];
+		// 		}
+		// 	}
 
 
 	</script>

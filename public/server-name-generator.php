@@ -18,6 +18,6 @@ function combiningRandomNounsandAdjectives ($adjectives, $nouns)
 	<title>Server Name Generator</title>
 </head>
 <body>
-	<h1><?php echo combiningRandomNounsandAdjectives($adjectives, $nouns) ?></h1>
+	<h1><?= combiningRandomNounsandAdjectives($adjectives, $nouns) ?></h1>
 </body>
 </html>

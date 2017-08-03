@@ -1,7 +1,8 @@
 <?php
+require 'functions.php';
 function pageController()
 {
-	$counter = isset($_GET["counter"]) ? $_GET["counter"] : 0;
+	$counter = inputHas("counter") ? inputGet("counter") : 0;
 	return [
 		"counter" => $counter
 	];
@@ -18,7 +19,7 @@ extract(pageController());
 <body>
 	<div class="heading-div">
 		<a href="/pong.php?counter=<?=$counter + 1?>"><img src ="/img/pingpong_ball.png" id="pingpong_ball"></a>
-		<h1><?= $counter ?></h1>
+		<h1><?= escape($counter) ?></h1>
 	</div>
 	<div>
 		<a href="/pong.php?counter=<?=$counter = 0?>"><img src="/img/ping-pong-table.png" id="ping_pong_table"></a>

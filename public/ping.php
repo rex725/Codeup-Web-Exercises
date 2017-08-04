@@ -1,8 +1,9 @@
 <?php
-require 'functions.php';
+require_once "../Input.php";
+require_once "functions.php";
 function pageController()
 {
-	$counter = inputHas("counter") ? inputGet("counter") : 0;
+	$counter = Input::has("counter") ? Input::get("counter") : 0;
 	return [
 		"counter" => $counter
 	];

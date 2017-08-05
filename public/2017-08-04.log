@@ -8,3 +8,7 @@
 2017-08-04 16:38:21[INFO]This is an error message.
 2017-08-04 16:38:46[ERROR]This is an error message.
 2017-08-04 16:38:46[INFO]This is an error message.
+2017-08-04 21:37:45[Error];aksdghj attempted unsuccessful log in.
+2017-08-04 21:38:00[INFO]guest was logged in successfully.
+2017-08-04 21:42:52[Error]guest attempted unsuccessful log in.
+2017-08-04 21:42:59[INFO]guest was logged in successfully.

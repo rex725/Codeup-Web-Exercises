@@ -1,18 +1,21 @@
-function digPow(n, p){
-	nString = n.toString();
-	nArray = nString.split('');
-	var nPowTotal = 0;
-	var k = 1;
-	for(var i = 0; i < nArray.length; i++) {
-		nPowTotal += Math.pow(parseInt(nArray[i]), (p + i));
-	}
-	while(k <= (nPowTotal/nArray.length)) {
-		if (n * k === nPowTotal ) {
-			return k;
+// String.prototype.toJadenCase = 
+function jadenSmithCase (str) {
+	var jadenSmithCaseRefactor = "";
+	strArray = str.split(' ');
+	strArray.forEach(function(element, index, array) {
+		var elementArray = [];
+		var elementString = "";
+		var firstLetter = "";
+		elementArray = element.split('');
+		firstLetter = elementArray[0].toUpperCase();
+		elementString += firstLetter;
+		for(var i = 1; i < elementArray.length; i++) {
+			elementString += element[i];
 		}
-		k++;
-	}
-	return -1;
-}
+		jadenSmithCaseRefactor += elementString + " ";
+
+	});
+	return jadenSmithCaseRefactor.trim();
+};
 
 

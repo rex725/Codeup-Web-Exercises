@@ -1,21 +1,18 @@
-// String.prototype.toJadenCase = 
-function jadenSmithCase (str) {
-	var jadenSmithCaseRefactor = "";
-	strArray = str.split(' ');
-	strArray.forEach(function(element, index, array) {
-		var elementArray = [];
-		var elementString = "";
-		var firstLetter = "";
-		elementArray = element.split('');
-		firstLetter = elementArray[0].toUpperCase();
-		elementString += firstLetter;
-		for(var i = 1; i < elementArray.length; i++) {
-			elementString += element[i];
+function findOutlier(integers){
+	var evenIntegers = [];
+	var oddIntegers = [];
+	integers.forEach(function(element, index, array) {
+		if(element % 2 === 0) {
+			evenIntegers.push(element);
+		} else if(element % 2 !== 0) {
+			oddIntegers.push(element);
 		}
-		jadenSmithCaseRefactor += elementString + " ";
-
 	});
-	return jadenSmithCaseRefactor.trim();
-};
+	if(evenIntegers.length < oddIntegers.length) {
+		return parseInt(evenIntegers);
+	} else {
+		return parseInt(oddIntegers);
+	}
+}
 
 

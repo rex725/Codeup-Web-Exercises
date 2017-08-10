@@ -1,8 +1,6 @@
 <?php
 
-$username = "vagrant";
-$password = "vagrant";
-$dbName = "codeup_test_db";
+require_once "env.php";
 
 $dbc = new PDO("mysql:host=127.0.0.1;dbname=$dbName", $username, $password);
 

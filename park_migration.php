@@ -1,10 +1,11 @@
 <?php
 
 require_once "env.php";
+require_once "Park.php";
 
-$dbc = new PDO("mysql:host=127.0.0.1;dbname=" . dbName, username, password);
+Park::dbConnect();
 
-$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+Park::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
 $query = "
@@ -20,4 +21,4 @@ $query = "
     PRIMARY KEY (id)
 	)";
 
-$dbc -> exec($query);
+Park::$dbc -> exec($query);

@@ -1,11 +1,12 @@
 <?php
 
 require_once "env.php";
+require_once "Park.php";
 
-$dbc = new PDO("mysql:host=127.0.0.1;dbname=" . dbName, username, password);
+Park::dbConnect();
 
-$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
+Park::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+echo Park::$dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
 $national_parks = [
 	['name'=>'Glacier National Park', 'location'=>'Montana', 'date_established'=>'1910-05-11', 'area_in_acres'=>1013000, 'description'=>'Glacier National Park is a 1,583-sq.-mi. wilderness area in Montana\'s Rocky Mountains, with glacier-carved peaks and valleys running to the Canadian border. It\'s crossed by the mountainous Going-to-the-Sun Road. Among more than 700 miles of hiking trails, it has a route to photogenic Hidden Lake. Other activities include backpacking, cycling and camping. Diverse wildlife ranges from mountain goats to grizzly bears.'],
@@ -19,14 +20,14 @@ $national_parks = [
 	['name'=>'Grand Canyon National Park', 'location'=>'Arizona', 'date_established'=>'1919-02-26', 'area_in_acres'=>1217000, 'description'=>'Grand Canyon National Park, in Arizona, is home to much of the immense Grand Canyon, with its layered bands of red rock revealing millions of years of geological history. Viewpoints include Mather Point, Yavapai Observation Station and architect Mary Colter’s Lookout Studio and her Desert View Watchtower. Lipan Point, with wide views of the canyon and Colorado River, is a popular, especially at sunrise and sunset.'],
 	['name'=>'Joshua Tree National Park', 'location'=>'California', 'date_established'=>'1994-10-31', 'area_in_acres'=>790600, 'description'=>'Joshua Tree National Park is a vast protected area in southern California. It\'s characterized by rugged rock formations and stark desert landscapes. Named for the region’s twisted, bristled Joshua trees, the park straddles the cactus-dotted Colorado Desert and the Mojave Desert, which is higher and cooler. Keys View looks out over the Coachella Valley. Hiking trails weave through the boulders of Hidden Valley.']
 ];
-$stmt = $dbc->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)");
 foreach ($national_parks as $parks)
 {
-	$stmt->bindValue(':name', $parks['name'], PDO::PARAM_STR);
-	$stmt->bindValue(':location', $parks['location'], PDO::PARAM_STR);
-	$stmt->bindValue(':date_established', $parks['date_established'], PDO::PARAM_STR);
-	$stmt->bindValue(':area_in_acres', $parks['area_in_acres'], PDO::PARAM_STR);
-	$stmt->bindValue(':description', $parks['description'], PDO::PARAM_STR);
-	$stmt->execute();
+	$park = new Park();
+	$park->name = $parks['name'];
+	$park->location = $parks['location'];
+	$park->dateEstablished = $parks['date_established'];
+	$park->areaInAcres = $parks['area_in_acres'];
+	$park->description = $parks['description'];
+	$park->insert();
 }
 

@@ -45,10 +45,11 @@ class Park
      * establish a database connection if we do not have one
      */
     public static function dbConnect() {
+        require 'db_connect.php';
         if (! is_null(self::$dbc)) {
-            return $dbc = new PDO("mysql:host=127.0.0.1;dbname=" . dbName, username, password);;
+            return;
         }
-        self::$dbc = require 'db_connect.php';
+        self::$dbc = new PDO("mysql:host=127.0.0.1;dbname=" . dbName, username, password);;
     }
 
     /**
@@ -56,9 +57,8 @@ class Park
      */
     public static function count() {
         self::dbConnect();
-        $stmt = $dbc->prepare("SELECT :count FROM national_parks");
-        $stmt->bindValue(':count', COUNT(*), PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt = self::$dbc->query("SELECT COUNT(id) FROM national_parks");
+        return $stmt->fetchColumn();
         // TODO: call dbConnect to ensure we have a database connection
         // TODO: use the $dbc static property to query the database for the
         //       number of existing park records
@@ -68,6 +68,14 @@ class Park
      * returns all the records
      */
     public static function all() {
+        self::dbConnect();
+        $stmt = self::$dbc->query("SELECT * FROM national_parks");
+        $results = [];
+        while($result = $stmt->fetch(PDO::FETCH_NUM)) {
+            array_push($results, $result);
+        }
+        $data['results'] = $results;
+        return $data;
         // TODO: call dbConnect to ensure we have a database connection
         // TODO: use the $dbc static property to query the database for all the
         //       records in the parks table
@@ -80,6 +88,16 @@ class Park
      * returns $resultsPerPage number of results for the given page number
      */
     public static function paginate($pageNo, $resultsPerPage = 4) {
+        self::dbConnect();
+        $stmt = self::$dbc->prepare("SELECT * FROM national_parks ORDER BY name LIMIT :limitValue OFFSET :offsetValue");
+        $stmt->bindValue(':limitValue', $resultsPerPage, PDO::PARAM_INT);
+        $stmt->bindValue(':offsetValue', $pageNo*4, PDO::PARAM_INT);
+        $stmt->execute();
+        $results = [];
+        while($result = $stmt->fetch(PDO::FETCH_NUM)) {
+            array_push($results, $result);
+        }
+        return $results;
         // TODO: call dbConnect to ensure we have a database connection
         // TODO: calculate the limit and offset needed based on the passed
         //       values
@@ -106,6 +124,14 @@ class Park
      * inserts a record into the database
      */
     public function insert() {
+        $stmt = self::$dbc->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)");
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':location', $this->location, PDO::PARAM_STR);
+        $stmt->bindValue(':date_established', $this->dateEstablished, PDO::PARAM_STR);
+        $stmt->bindValue(':area_in_acres', $this->areaInAcres, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
+        $stmt->execute();
+        $this->id = self::$dbc->lastInsertId();
         // TODO: call dbConnect to ensure we have a database connection
         // TODO: use the $dbc static property to create a perpared statement for
         //       inserting a record into the parks table

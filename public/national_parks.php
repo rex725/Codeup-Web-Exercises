@@ -1,71 +1,65 @@
 <?php
+	require_once __DIR__ . "/../env.php";
 	require_once __DIR__ . "/../db_connect.php";
-	require_once __DIR__ . "/../Input.php";	
+	require_once __DIR__ . "/../Input.php";
+	require_once __DIR__ . "/../Park.php";
 	function pageController($dbc) {
-		$counter = Input::get('counter', 0);
-		if($counter <= 0) {
-			$stmt = $dbc->prepare("SELECT * FROM national_parks ORDER BY name LIMIT :limitValue");
-			$stmt->bindValue(':limitValue', 4, PDO::PARAM_INT);
-
+		$pageNo = (int) Input::get('pageNo', 0);
+		$results = [];
+		$prev = "";
+		$next = "";
+		Park::dbConnect();
+		if($pageNo <= 0) {
 			$prev = "";
 			$next = "Next";
-		} else if($counter === '1') {
-			$stmt = $dbc->prepare("SELECT * FROM national_parks ORDER BY name LIMIT :limitValue OFFSET :offsetValue");
-			$stmt->bindValue(':limitValue', 4, PDO::PARAM_INT);
-			$stmt->bindValue(':offsetValue', 4, PDO::PARAM_INT);
+		}else if(Park::count() % 4 === 0) {
+			if(Park::count() / 4 === $pageNo + 1) {
+				$prev = "Prev";
+				$next = "";	
+			} else if($pageNo >= 1) {
+				$prev = "Prev";
+				$next = "Next";
+			}
 
+		}else if(count(Park::paginate($pageNo)) < 4)  {
+			$prev = "Prev";
+			$next = "";	
+		}else if($pageNo >= 1) {
 			$prev = "Prev";
 			$next = "Next";
-		} else {
-			$stmt = $dbc->prepare("SELECT * FROM national_parks ORDER BY name LIMIT :limitValue OFFSET :offsetValue");
-			$stmt->bindValue(':limitValue', 4, PDO::PARAM_INT);
-			$stmt->bindValue(':offsetValue', 8, PDO::PARAM_INT);
-
-			$prev = "Prev";
-			$next = "";
 		}
-		$stmt->execute();
-		$results = [];
-		$anchors = [];
-	
-		while($result = $stmt->fetch(PDO::FETCH_NUM)) {
-			array_push($results, $result);
-		}
-
-		$data['results'] = $results;
+		$data['results'] = Park::paginate($pageNo);
 		$data['anchors'] = [$prev, $next];
-		$data['counter'] = $counter;
+		$data['pageNo'] = $pageNo;
 		return $data;
+
+		$park = new Park();	
+		if(!empty($_POST)){
+			if(Input::get('name') === '') {
+				echo 'Please enter a name.'.PHP_EOL;
+			} 
+			if(Input::get('location') === '') {
+				echo 'Please enter a location.'.PHP_EOL;
+			} 
+			if(Input::get('date_established') === '') {
+				echo 'Please enter a date that the park was established.'.PHP_EOL;
+			} 
+			if(Input::get('area_in_acres') === '') {
+				echo 'Please enter the area in acres.'.PHP_EOL;
+			} 
+			if(Input::get('description') === '') {
+				echo 'Please enter a description.'.PHP_EOL;
+			} else if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has	('area_in_acres') && Input::has('description')) {
+				$park->name = Input::get('name');
+				$park->location = Input::get('location');
+				$park->dateEstablished = Input::get('date_established');
+				$park->areaInAcres = Input::get('area_in_acres');
+				$park->description = Input::get('description');
+				$park->insert();
+			}
+		}
 	}
 	extract(pageController($dbc));
-	if(!empty($_POST)){
-		if(Input::get('name') === '') {
-			echo 'Please enter a name.'.PHP_EOL;
-		} 
-		if(Input::get('location') === '') {
-			echo 'Please enter a location.'.PHP_EOL;
-		} 
-		if(Input::get('date_established') === '') {
-			echo 'Please enter a date that the park was established.'.PHP_EOL;
-		} 
-		if(Input::get('area_in_acres') === '') {
-			echo 'Please enter the area in acres.'.PHP_EOL;
-		} 
-		if(Input::get('location') === '') {
-			echo 'Please enter a location.'.PHP_EOL;
-		} 
-		if(Input::get('description') === '') {
-			echo 'Please enter a description.'.PHP_EOL;
-		} else if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description')){
-			$stmt = $dbc->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)");
-			$stmt->bindValue(':name', Input::get('name'), PDO::PARAM_STR);
-			$stmt->bindValue(':location', Input::get('location'), PDO::PARAM_STR);
-			$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
-			$stmt->bindValue(':area_in_acres', Input::get('area_in_acres'), PDO::PARAM_STR);
-			$stmt->bindValue(':description', Input::get('description'), PDO::PARAM_STR);
-			$stmt->execute();
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,8 +89,8 @@
 			</tr>
 		<?php endforeach?>
 	</table>
-	<a href="/national_parks.php?counter=<?= $counter - 1?>"><?= $anchors[0] ?></a>
-	<a href="/national_parks.php?counter=<?= $counter + 1?>"><?= $anchors[1] ?></a>
+	<a href="/national_parks.php?pageNo=<?= $pageNo - 1?>"><?= $anchors[0] ?></a>
+	<a href="/national_parks.php?pageNo=<?= $pageNo + 1?>"><?= $anchors[1] ?></a>
 	<div class='form'>
 		<h2>Add a National Park</h2>
 		<form method='POST' action='national_parks.php'>
